@@ -11,7 +11,7 @@ class CarModelForm(forms.ModelForm):
     def clean_value(self):
         value = self.cleaned_data.get('value')
 
-        if value < 20000:
+        if value < 5000:
             self.add_error('value', 'Valor minimo deve ser de R$20.000')
         return value
     

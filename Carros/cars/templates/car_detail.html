@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+  .car-card {
+    background-color: #f8f9fa;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    overflow: hidden;
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+    max-width: 450px;
+    margin: 30px auto;
+    padding: 20px;
+  }
+
+  .car-card:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    transform: translateY(-5px);
+  }
+
+  .car-card img {
+    width: 100%;
+    height: auto;
+    border-bottom: 2px solid #ddd;
+    object-fit: cover;
+  }
+
+  .car-card h2 {
+    font-size: 1.8rem;
+    margin: 15px 0;
+    color: #333;
+  }
+
+  .car-card p {
+    font-size: 1rem;
+    color: #555;
+    margin: 5px 0;
+  }
+
+  .buttons-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    gap: 20px
+  }
+
+  .btn {
+    background-color: #0096c7; /* Azul escuro, consistente com cabeçalhos */
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 4px; /* Botões arredondados para um estilo moderno */
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+  }
+
+  .btn-primary:hover {
+    background-color: #0066d3; /* Cor mais escura ao passar o mouse */
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+  }
+
+  .btn-danger {
+    background-color: #b31f1f; /* Azul escuro, consistente com cabeçalhos */
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 4px; /* Botões arredondados para um estilo moderno */
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+  }
+
+  .btn-danger:hover {
+    background-color: #bd0000c2; /* Vermelho mais escuro ao passar o mouse */
+  }
+
+  .error-message {
+    color: #dc3545;
+    font-size: 14px;
+    margin-top: 10px;
+  }
+
+  a {
+    text-decoration: none;
+  }
+</style>
+
+<div class="car-card">
+  <img src="{{ object.photo.url }}" alt="{{ object.model }} - {{ object.brand }}">
+  <h2>{{ object.brand }} {{ object.model }}</h2>
+  <p><strong>Ano de fabricação:</strong> {{ object.factory_year }}</p>
+  <p><strong>Ano do modelo:</strong> {{ object.model_year }}</p>
+  <p><strong>Placa:</strong> {{ object.plate }}</p>
+  <p><strong>Preço:</strong> R$ {{ object.value }}</p>
+</div>
+
+<div class="buttons-container">
+    {% if user.is_authenticated %}
+        <a href="{% url 'car_update' pk=object.pk %}" class="btn btn-primary">Editar</a>
+        <a href="{% url 'car_delete' pk=object.pk %}" class="btn-danger">Deletar</a>
+    {% endif %}
+</div>
+{% endblock %}
