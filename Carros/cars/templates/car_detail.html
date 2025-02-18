@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
 <style>
@@ -93,7 +94,11 @@
 </style>
 
 <div class="car-card">
-  <img src="{{ object.photo.url }}" alt="{{ object.model }} - {{ object.brand }}">
+  {% if car.photo %}
+    <img src="{{ car.photo.url }}" alt="{{ car.model }} - {{ car.brand }}">
+  {% else %}
+    <img src="{% static 'marca.jpg' %}" alt="{{ car.model }} - {{ car.brand }}">
+  {% endif %}
   <h2>{{ object.brand }} {{ object.model }}</h2>
   <p><strong>Ano de fabricação:</strong> {{ object.factory_year }}</p>
   <p><strong>Ano do modelo:</strong> {{ object.model_year }}</p>
