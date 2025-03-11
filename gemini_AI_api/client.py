@@ -4,7 +4,7 @@ from google.genai import types
 
 def get_car_ai_bio(model, brand, year):
 
-    gemini_api_key="AIzaSyDoF6PXu26Kh8Zv4UlHVt6CHD7OBexgjs0"
+    gemini_api_key="SUA CHAVE DE API"
     
     prompt = '''
                 Me mostre uma descrição de venda para o carro {} {} {} em 250 caracteres.
